@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .kotak {
+            border: 1px solid black;
+            height: 100px;
+            width: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 30%; display: inline-block;">
+        <!-- user -->
+        <div>
+            <div class="kotak" id="batuuser" onclick="pilihanUser(0)">
+                Batu
+            </div>
+            <div class="kotak" id="kertasuser" onclick="pilihanUser(1)">
+                Kertas
+            </div>
+            <div class="kotak" id="guntinguser" onclick="pilihanUser(2)">
+                Gunting
+            </div>
+        </div>
+    </div>
+    <div  style="width: 30%; display: inline-block;">
+        <!-- hasil -->
+        hasil
+    </div>
+    <div  style="width: 30%; display: inline-block;">
+        <!-- computer -->
+        <div>
+            <div class="kotak" id="batucom" >
+                Batu
+            </div>
+            <div class="kotak" id="kertascom">
+                Kertas
+            </div>
+            <div class="kotak" id="guntingcom">
+                Gunting
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+// Story board
+
+// 1. Kita pilih option kita / pilih tangan, value diambil di js -> Done
+// 2. trigger / memicu random pilihan si computer ->  Done
+// 3. bikin ketentuan -> done
+// 4. kita tampilkan hasilnya
+
+// pake DOM / Document Object Model // halaman HTML -> anggak sebagai object
+
+
+// kita tangkep event 
+// event onclick sudah kita dapat
+
+let valueUser = null
+let valueCom = null
+
+function pilihanUser(parameter){
+    // parameter bisa kita taro disini
+    // console.log(parameter)
+    valueUser = parameter
+    // document.getElementById("p2").style.color = "blue";
+    // let objectUser = document.getElementById('pilihanuser')
+    // console.log(objectUser)
+
+    if(parameter == 0) {
+        document.getElementById('batuuser').style.background = "grey"; 
+        document.getElementById('kertasuser').style.background = "none";
+        document.getElementById('guntinguser').style.background = "none";
+    } else if (parameter == 1) {
+        document.getElementById('kertasuser').style.background = "grey";
+        document.getElementById('batuuser').style.background = "none";
+        document.getElementById('guntinguser').style.background = "none";
+    } else if (parameter == 2) {
+        document.getElementById('guntinguser').style.background = "grey";
+        document.getElementById('kertasuser').style.background = "none";
+        document.getElementById('batuuser').style.background = "none"; 
+    }
+
+    randomPilihan()
+    cekHasil()
+
+
+}
+
+function randomPilihan() {
+    valueCom = Math.floor(Math.random() * 3);
+
+    if(valueCom == 0) {
+        document.getElementById('batucom').style.background = "grey"; 
+        document.getElementById('kertascom').style.background = "none";
+        document.getElementById('guntingcom').style.background = "none";
+    } else if (valueCom == 1) {
+        document.getElementById('kertascom').style.background = "grey";
+        document.getElementById('batucom').style.background = "none";
+        document.getElementById('guntingcom').style.background = "none";
+    } else if (valueCom == 2) {
+        document.getElementById('guntingcom').style.background = "grey";
+        document.getElementById('kertascom').style.background = "none";
+        document.getElementById('batucom').style.background = "none"; 
+    }
+}
+
+function cekHasil() {
+        // 0 batu
+        // kertas 1
+        // gunting 2
+
+        // jika piliham computer == user maka imbang -> done
+ 
+        // jika user batu && comp kertas, maka user kalah -> done
+        // jika user batu && comp gunting, maka user menang -> done
+
+        // jika user kertas && comp batu, maka user menang -> done
+        // jika user kertas && comp gunting, maka comp menang -> done
+ 
+        // jika user gunting && com kertas, user menang -> done
+        // jika user gunting && com batu, user kalah -> done
+
+       if(valueUser === valueCom){
+           console.log('seri')
+       } else if (valueUser === 0 && valueCom === 1){
+          console.log('computer win')
+       } else if (valueUser === 0 && valueCom === 2){
+          console.log('player 1 win')
+       } else if (valueUser == 1 && valueCom === 0) {
+          console.log('player 1 win')
+       } else if (valueUser === 1 && valueCom === 2) {
+           console.log('Computer win')
+       } else if (valueUser === 2 && valueCom === 1) {
+           console.log('user menang')
+       } else if (valueUser === 2 && valueCom === 0) {
+           console.log('computer win')
+       }
+
+
+
+
+
+
+
+
+}
+
+
+</script>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .kotak {
+            border: 1px solid black;
+            height: 100px;
+            width: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 30%; display: inline-block;">
+        <!-- user -->
+        <div id="pilihanUser">
+            <div class="kotak" id="batuuser" >
+                Batu
+            </div>
+            <div class="kotak" id="kertasuser">
+                Kertas
+            </div>
+            <div class="kotak" id="guntinguser">
+                Gunting
+            </div>
+        </div>
+    </div>
+    <div  style="width: 15%; display: inline-block;">
+        <!-- hasil -->
+        <div  id="starthasil" style="display: block;">
+            VS
+        </div>
+        <div id="endhasil" style="background-color: green; display: none;">
+            Hasil
+        </div>
+    </div>
+    <div  style="width: 15%; display: inline-block;" id="startGame">
+        <!-- hasil -->
+        Start!
+    </div>
+    <div  style="width: 30%; display: inline-block;">
+        <!-- computer -->
+        <div id="pilihanComp">
+            <div class="kotak" id="batucom" >
+                Batu
+            </div>
+            <div class="kotak" id="kertascom">
+                Kertas
+            </div>
+            <div class="kotak" id="guntingcom">
+                Gunting
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+// inheritance -> Pewarisan
+// encapsulation -> Pembungkusan
+// abstraction
+// polymorphism
+
+class Human {
+
+    constructor(isStart, valuePlayer, valueComp){
+        this.isStart = isStart
+        this.valuePlayer = valuePlayer
+        this.valueComp = valueComp
+    }
+
+
+    // apa yang bisa dilakukan game ini
+
+    gameStart(){
+        // akan memulai game
+        document.getElementById('startGame').addEventListener('click', () => {
+            // kita rubah keadaannya jadi start
+            this.isStart = true
+
+            // listen pilihan player
+            console.log(this.isStart)
+            this.pilihanPlayer()
+            alert('game start', this.isStart)
+        })
+    }
+
+    pilihanPlayer(){
+        // belum di mulai gamenya
+        if(this.isStart == false) {
+            alert('Klik Tombol Start')
+        } else {
+            // listen pilihan  
+            // . -> class
+            // # -> id
+            // a, div -> tag
+            let pilihanPlayer = document.querySelectorAll('#pilihanUser div')
+            console.log(typeof pilihanPlayer)
+            console.log(pilihanPlayer.length)
+
+            // [div, div, div]
+            for(let index = 0; index < pilihanPlayer.length; index++){ 
+                pilihanPlayer[index].addEventListener('click', () => {
+                    // set nilai player 
+                    if(!this.valuePlayer) {
+                        this.valuePlayer = index
+                    }
+                    
+                    // styling pilihan player
+                    if(this.isStart == true && !this.valuePlayer) {
+                        this.styling(pilihanPlayer[index])
+                    }
+
+                    // set nilai comp
+                    if(!this.valueComp) {
+                        this.valueComp = this.randomvalue()
+                    }
+
+                    // stylingComputer
+                    this.stylingComp(this.valueComp)
+
+                    // cek hasil
+                    this.cekHasil(this.valuePlayer, this.valueComp)
+                })
+            }
+            
+        }
+    }
+
+    randomvalue(){
+        let randomAngka = Math.floor(Math.random() * 3)
+        return randomAngka
+    }
+
+
+
+    #cekHasil = (user, comp) => {
+
+        let hasilcek = ''
+        if(user == comp){
+            hasilcek = 'Draw'
+        } else {
+            hasilcek = 'Player 1 Win'
+        }
+
+        this.stylingHasil(hasilcek)
+    }
+
+    stylingHasil(hasil){
+        document.getElementById('starthasil').style.display = 'none'
+        document.getElementById('endhasil').style.display = 'block'
+        document.getElementById('endhasil').innerHTML = hasil
+    }
+
+    resetGame(){
+        
+    }
+
+    styling(element){
+        // 
+        console.log(element)
+        element.style.background = 'grey'
+        // tangan[index].style.background = 'black'
+    }
+
+    stylingComp(index){
+        let elementComp = document.querySelectorAll('#pilihanComp div')
+        console.log('ini adalah elemet comp', elementComp[index])
+        elementComp[index].style.background = 'grey'
+    }
+
+}
+
+class perhitungan extends Human {
+
+    // encapsulation
+    privateFunction = () => {
+        console.log('ini adalah private function')
+    }
+
+    HitungDiskon = (hargaawal, besarDiskon) => {
+        // logika hitung diskun
+        
+    } 
+
+    publicFunction = () => {
+       this.#HitungDiskon(hargaawal, besarDiskon)
+    }
+}
+
+
+
+
+// Game
+class Game {
+    randomValue(){
+
+    }
+}
+// gamesuit
+class gameSuit extends Game {
+    
+}
+// gamecatur
+class gameCatur extends Game {
+    
+}
+
+
+
+// inisiasi object nya
+let game = new Human(false, null, null)
+game.gameStart()
+
+
+// buat random
+let randomAngka = game.randomvalue()
+console.log('ini adalah nilai random yang didapat dari class', randomAngka)
+
+let uname = new Username
+console.log(uname.randomvalue())
+uname.publicFunction()
+
+
+</script>
+</html>
