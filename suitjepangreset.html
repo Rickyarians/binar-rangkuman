@@ -13,6 +13,10 @@
             margin-top: 10px;
             margin-bottom: 10px;
         }
+
+        .kotakabu {
+            background: grey;
+        }
     </style>
 </head>
 <body>
@@ -32,9 +36,11 @@
     </div>
     <div  style="width: 15%; display: inline-block;">
         <!-- hasil -->
+        <!-- ini default tampilan -->
         <div  id="starthasil" style="display: block;">
             VS
         </div>
+        <!-- ini ketika sudah di mainkan dan sudah ada hasilnya -->
         <div id="endhasil" style="background-color: green; display: none;">
             Hasil
         </div>
@@ -42,6 +48,14 @@
     <div  style="width: 15%; display: inline-block;" id="startGame">
         <!-- hasil -->
         Start!
+    </div>
+    <div  style="width: 15%; display: inline-block;" onclick="game.pilihanPlayer()">
+        <!-- hasil -->
+        By pass Pilhan Player
+    </div>
+    <div  style="width: 15%; display: inline-block;" onclick="game.resetGame()">
+        <!-- hasil -->
+        Reset
     </div>
     <div  style="width: 30%; display: inline-block;">
         <!-- computer -->
@@ -57,6 +71,10 @@
             </div>
         </div>
     </div>
+
+    <div class="kotak kotakabu" id="removeclass">
+        Manipulasi Class
+    </div>
 </body>
 
 <script>
@@ -69,7 +87,7 @@
 class Human {
 
     constructor(isStart, valuePlayer, valueComp){
-        this.isStart = isStart
+        this.isStart = isStart // true
         this.valuePlayer = valuePlayer
         this.valueComp = valueComp
     }
@@ -83,8 +101,10 @@ class Human {
             // kita rubah keadaannya jadi start
             this.isStart = true
 
-            // listen pilihan player
+           
             console.log(this.isStart)
+
+             // listen pilihan player -> manggil function
             this.pilihanPlayer()
             alert('game start', this.isStart)
         })
@@ -107,30 +127,38 @@ class Human {
             for(let index = 0; index < pilihanPlayer.length; index++){ 
                 pilihanPlayer[index].addEventListener('click', () => {
                     // set nilai player 
-                    this.cekRestartGame(parameter1, parameter2, paramater3)
+                    console.log('nilai constructor')
+                    console.log(this.isStart)
+                    console.log(this.valuePlayer)
+                    console.log(this.valueComp)
                     
-                    if(!this.valuePlayer) {
+                    if(this.valuePlayer == null) {
                         this.valuePlayer = index // -> code ini tidak jalan ketika valuePlayer
                     }
                     
                     // styling pilihan player
-                    if(this.isStart == true && !this.valuePlayer) {
+                    if(this.isStart == true && this.valuePlayer != null) {
                         this.styling(pilihanPlayer[index])
                     }
 
                     // set nilai comp
                     // cek nilai variabel
-                    if(!this.valueComp) { 
+                    if(this.valueComp == null) { 
                         this.valueComp = this.randomvalue() // 
                     }
 
                     
 
                     // stylingComputer
-                    this.stylingComp(this.valueComp)
+                    if(this.isStart == true && this.valueComp != null){
+                        this.stylingComp(this.valueComp) // 0, 1, 2
+                    }
+                   
 
                     // cek hasil
-                    this.cekHasil(this.valuePlayer, this.valueComp)
+                    if(this.isStart == true && this.valueComp != null && !this.valuePlayer != null){
+                        this.cekHasil(this.valuePlayer, this.valueComp) // 0 - 0
+                    }
                 })
             }
             
@@ -144,7 +172,7 @@ class Human {
 
 
 
-    #cekHasil = (user, comp) => {
+    cekHasil = (user, comp) => {
 
         let hasilcek = ''
         if(user == comp){
@@ -183,11 +211,41 @@ class Human {
         element.style.background = 'grey'
         // tangan[index].style.background = 'black'
     }
-
+    // 0, 1, 2
     stylingComp(index){
         let elementComp = document.querySelectorAll('#pilihanComp div')
         console.log('ini adalah elemet comp', elementComp[index])
         elementComp[index].style.background = 'grey'
+    }
+
+    resetGame() {
+        // reset Stylingnya
+        let elementP = document.querySelectorAll('#pilihanUser div')
+        elementP[this.valuePlayer].style.background = 'none'
+
+        let elementC = document.querySelectorAll('#pilihanComp div')
+        elementC[this.valueComp].style.background = 'none'
+
+        document.getElementById('starthasil').style.display = 'block'
+        document.getElementById('endhasil').style.display = 'none'
+        document.getElementById('endhasil').innerHTML = ''
+
+
+        // Kosongin 
+        this.valueComp = null
+        this.valuePlayer = null
+        this.isStart = false
+
+        // contoh styling class dari mba afifah
+        // hilangin styling Computer
+        // tangkap element dengan DOM
+        let elementClass = document.getElementById('removeclass')
+        /* 
+            <div class="kotak kotakabu" id="removeclass">
+                Manipulasi Class
+            </div>
+        */
+        elementClass.classList.remove('kotakabu')
     }
 
 }
@@ -234,13 +292,9 @@ let game = new Human(false, null, null)
 game.gameStart()
 
 
-// buat random
-let randomAngka = game.randomvalue()
-console.log('ini adalah nilai random yang didapat dari class', randomAngka)
+//
 
-let uname = new Username
-console.log(uname.randomvalue())
-uname.publicFunction()
+
 
 
 </script>

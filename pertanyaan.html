@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div onclick="refreshGame()">
+
+    </div>
+</body>
+
+ <script>
+
+     // Wildan -> Validasi Game Start
+     let isStart = false
+     let valuePlayer = null
+     let valueComp = null
+
+    //  Event listener
+    // kita cek 3 value terisi atau belum
+
+    function cekRestartGame(isStart, valuePlayer, valueComp){
+        if(!isStart || !valuePlayer || !valueComp){
+            // lanjutkan program
+        } else {
+            alert('restart game')
+        }
+    }
+
+    // afifah -> Restart
+    // 
+    function refreshGame(indexPlayer, indexComp) {
+        // reset style
+
+
+        // hilangin style tangan -> berdasarkan tangan yang kita pilih, by index, ditangkap terlabih dahulu DOM nya
+        // elementPlayer[0].style.background = 'none'
+        //  let pilihanPlayer = document.querySelectorAll('#pilihanUser div') -> dapet elemetnya 3 biji
+        // loop pilihanPlayer, index == indexPlayer, kita styling pilihanPlayer[index].style.background = 'none'
+
+        // hilagin style tangan computer -> berdasarkan hasil random, by index, ditangkap terlabih dahulu DOM nya
+        // reset style hasil, VS kita kasih style display block 
+        // reset style hasil, player win, comp win, atau seri display none
+
+    
+
+
+        // reset nilai variabel 
+        isStart = false
+        valuePlayer = null
+        valueComp = null
+    }
+
+
+
+
+
+
+
+
+
+ </script>
+</html>
+
