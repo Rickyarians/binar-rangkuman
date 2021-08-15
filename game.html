@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Document</title>
+
+    <style>
+        .tanganstyle:hover {
+            background-color: grey;
+            cursor: pointer;
+            
+        }
+        .imgzoom:hover {
+            transform: scale(1.3)
+        }
+    </style>
+</head>
+<body>
+    <!-- Halaman Game -->
+    <!-- <h5>Halaman Game</h5>
+    <a href="./home.html"><button style="background-color: blue">
+        Ke halaman Home
+    </button></a> -->
+
+    <div class="mx-4 bg-success">
+        <div class="row ">
+            <div class="d-inline-flex align-items-center">
+                <div class="">
+                    <a href="./home.html" style="text-decoration: none; color:#724c21; font-size: 2.25rem; font-weight: bold; "><</a>
+                </div>
+                <div class="mx-3">
+                    <img src="./assets//images/logo 1.png" height="80" alt="" class="p-2" >
+                </div>
+                <div>
+                    <p class="m-2" style="color: #f9b23d; font-weight:bold; text-transform: uppercase; font-size: 2rem;">Rock Papper Scissors</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  -->
+    <div class="mx-4 ">
+        <div class="row">
+            <div class="col d-flex align-items-center flex-column">
+                Player 1
+                <div style="height: 200px; width:200px" class="my-2 d-flex align-items-center tanganstyle">
+                    <img src="./assets/images/batu.png" height="150" width="150" class="mx-auto imgzoom" alt="">
+                </div>
+                <div style="height: 200px; width:200px" class="my-2 d-flex align-items-center tanganstyle">
+                    <img src="./assets/images/gunting.png" height="150" width="150" class="mx-auto imgzoom" alt="">
+                </div>
+                <div style="height: 200px; width:200px" class="my-2 d-flex align-items-center tanganstyle">
+                    <img src="./assets/images/kertas.png" height="150" width="150" class="mx-auto imgzoom " alt="">
+                </div>
+                <!-- <div style="height: 200px; width:200px" class="bg-info my-2">
+                    <img src="./assets/images/gunting.png" alt="">
+                </div>
+                <div style="height: 200px; width:200px" class="bg-info my-2">
+                    <img src="./assets/images/gunting.png" alt="">
+                </div> -->
+            </div>
+            <div class="col d-flex align-items-center flex-column">
+                <div class="d-flex alig-self-center align-items-center" style="height: 100%;">
+                    <p style="color: red;font-size: 10rem">VS</p>
+                </div>
+            </div>
+            <div class="col d-flex align-items-center flex-column" id="comp">
+                Com
+                <div style="height: 200px; width:200px" class="my-2 d-flex align-items-center tanganstyle">
+                    <img src="./assets/images/batu.png" height="150" width="150" class="mx-auto imgzoom" alt="">
+                </div>
+                <div style="height: 200px; width:200px" class="my-2 d-flex align-items-center tanganstyle">
+                    <img src="./assets/images/gunting.png" height="150" width="150" class="mx-auto imgzoom" alt="">
+                </div>
+                <div style="height: 200px; width:200px" class="my-2 d-flex align-items-center tanganstyle">
+                    <img src="./assets/images/kertas.png" height="150" width="150" class="mx-auto imgzoom" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+
+<script>
+
+    // Definisi / ngenalin akan membuat sebuah object namanya 
+    // Human, Mobil
+
+    let compPilihan = document.querySelectorAll('#comp div')
+    // console.log(compPilihan)
+    // console.log(compPilihan[0])
+
+    class Game {
+
+        // Constructor
+        // iniasialisasi awal -> raissa
+        // variabel di dalam objectnya -> juno
+
+        // constructor itu menyimpan nilai, yang diinisasi di awal, yang mana akan dipakai/bisa dipakai di dalam class itu
+        // constructor(hidung, kulit, player1){
+        //     this.isStart = false
+        //     this.hidung = hidung
+        //     this.kulit = kulit
+        //     this.tangan = 'kidal'
+        //     this.player1 = player1
+        // }
+
+        constructor(isStart, player1, comp,compClass) {
+            this.isStart = isStart
+            this.player1 = 0
+            this.comp = comp
+            this.compClass = compClass
+        }
+
+
+        start() {
+
+        }
+
+        // constructor(props){ 
+        //     let { name, signs, signIdx } = props; }
+
+        // cebok(){
+        //     if(this.tangan == 'kidal')}{
+        //         console.log('cebok')
+        //     }
+        // }
+        cetakNilaiPlayer(){
+            console.log(this.player1)
+        }
+
+        getPilihanComp() {
+            console.log(this)
+            console.log(this.compClass.getComp())
+            compPilihan[this.compClass.getComp()].style.background = 'gray'
+
+        }
+
+        
+
+    }
+
+    class Player extends Game {
+        constructor(isStart, player1, comp){
+            super(isStart, player1, comp)
+        }
+    }
+
+    class Comp extends Game {
+
+        // #nilaiutama = 100
+
+        constructor(isStart, player1, comp){
+            super(isStart, player1, comp)
+            this.randomnilai = null
+
+        }
+
+        #randomvalue = () => {
+            return Math.floor(Math.random() * 3)     
+        }
+
+        getComp() {
+            return this.#randomvalue()
+        }
+
+        
+        
+
+        // cetakRandom(){
+        //     console.log(this.randomvalue)
+        // }
+        
+        // cetaknilaiutama(){
+        //     console.log(this.#nilaiutama)
+        // }
+    }
+
+    const comp = new Comp()
+    const game = new Game(false, 0, 0, comp)
+    game.getPilihanComp()
+    game.start()
+
+    
+   
+    // const player = new Player(false, 0, 0)
+    // player.cetakNilaiPlayer()
+    
+
+   
+    // comp.cetakNilaiPlayer()
+    // // comp.cetakRandom()
+    // // console.log(comp.#randomvalue())
+    // // console.log(comp.#nilaiutama)
+    // comp.cetaknilaiutama()
+
+   
+</script>
+</html>
