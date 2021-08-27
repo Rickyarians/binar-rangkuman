@@ -27,6 +27,16 @@ router.get('/', function(req, res, next) {
    })
 });
 
+router.post('/', function(req, res, next) {
+  // res.status(200).json({
+  //   'status' : 200,
+  //   'message': 'Berhasil Get Data Users',
+  //   'data' : datausers
+  // })
+});
+
+
+
 
 router.get('/:id', function(req, res, next) {
   res.send('respond with a resource coba');
