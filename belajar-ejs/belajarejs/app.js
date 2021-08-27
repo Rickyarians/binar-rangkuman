@@ -9,6 +9,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products'); // tambahin
+var suitsRouter = require('./routes/suits'); // tambahin
+const { nextTick } = require('process');
+const e = require('express');
 
 var app = express();
 
@@ -22,14 +25,41 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+app.use(function(req, res, next) {
+ console.log(req)
+ if(req.path === '/' || req.path == '/users/login' || req.path == '/login') {
+   // route halaman publik
+   next() // boleh lewat
+ } else if (req.path === '/suits') {
+   console.log(req.query.isLogin)
+   if(req.query.isLogin == 'true') {
+     next()
+   } else {
+      res.redirect('/login')
+   }
+ }  else if (req.path == '/users') {
+    if(req.headers.authorization == 'Bearer token1') {
+      next()
+    } else {
+      res.json({
+        'message' : 'anda tidak berhak akses api ini'
+      })
+    }
+ }
+ else {
+  next(createError(404));
+ }
+});
+
+
 app.use('/', indexRouter);
+app.use('/suits', suitsRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter); // tambahin 
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+
 
 // error handler
 app.use(function(err, req, res, next) {
